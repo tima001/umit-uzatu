@@ -1,7 +1,7 @@
 {
   "name": "wedding",
   "version": "0.1.0",
-  "homepage": "https://github.com/tima001/sultan-umit-wedding",
+  "homepage": "https://tima001.github.io/sultan-umit-wedding",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
