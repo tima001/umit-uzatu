@@ -1,97 +1,81 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
-const InformationText = () => {
-  const [ref2, vis2] = useScrollAnimation({ threshold: 0.2 });
-
+export default function InformationText() {
   return (
-    <InformationTextWrapper>
-      <TextContentWrapper ref={ref2} visible={vis2} delay="0.2s">
-        <IconCircle>📍</IconCircle>
-        <TitleText>Мекен жайымыз:</TitleText>
-        <Separator />
-        <ContentText>
-          Тараз қаласы <br />
-Проспект жамбыла 121а <br />
-          <VenueName>"Baltash "</VenueName> рестораны
-        </ContentText>
-      </TextContentWrapper>
-    </InformationTextWrapper>
+    <>
+      <VenueLabel>Мекен-жайы:</VenueLabel>
+
+      <AddrBlock>
+        <City>Тараз қаласы,</City>
+        <Street>Аль-Фараби көшесі, 68</Street>
+        <VName>«Qobyz ballroom»</VName>
+        <VType>салтанат сарайы</VType>
+      </AddrBlock>
+
+      <MapBtn onClick={() => window.open("https://2gis.kz/taraz/firm/70000001111844810")}>
+        Картаны ашу
+      </MapBtn>
+    </>
   );
-};
+}
 
-export default InformationText;
-
-const IconCircle = styled.div`
-  font-size: 32px;
-  margin-bottom: 8px;
-  animation: floatUpDown 3s ease-in-out infinite;
-
-  @keyframes floatUpDown {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-  }
+const VenueLabel = styled.div`
+  font-family: "bika", cursive;
+  font-size: 48px;
+  color: #84744b;
+  text-align: center;
 `;
 
-const TextContentWrapper = styled.div`
+const AddrBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 32px 24px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 32px rgba(161, 27, 20, 0.08);
-  border: 1px solid rgba(161, 27, 20, 0.1);
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transform: ${({ visible }) =>
-    visible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)"};
-  transition: opacity 0.9s ease ${({ delay }) => delay},
-    transform 0.9s ease ${({ delay }) => delay};
+  gap: 12px;
 `;
 
-const Separator = styled.div`
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #aa915d, transparent);
-  margin: 4px 0 8px;
-`;
-
-const TitleText = styled.h2`
-  font-family: "GreatFont";
-  font-size: 38px;
-  letter-spacing: 2px;
-  margin: 0;
-  font-weight: 200;
-  color: #3d1a18;
-
-  @media (max-width: 320px) {
-    font-size: 32px;
-  }
-`;
-
-const ContentText = styled.h2`
-  font-family: "BKANTKZ", Arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.7;
-  font-weight: 200;
+const City = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-size: 17px;
+  color: #3a2a1a;
   text-align: center;
-  margin: 0;
 `;
 
-const VenueName = styled.span`
-  font-family: "GreatFont";
-  font-size: 42px;
-  color: #aa915d;
-  line-height: 80%;
+const Street = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-size: 16px;
+  color: #84744b;
+  text-align: center;
 `;
 
-const InformationTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 0 16px;
+const VName = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: #3a2a1a;
+  text-align: center;
+  margin-top: 6px;
+`;
+
+const VType = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-size: 16px;
+  color: #84744b;
+  text-align: center;
+`;
+
+const MapBtn = styled.button`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fffbec;
+  background: #84744b;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 28px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-top: 24  px;
+  transition: all 0.3s;
+  &:hover { background: #6d5d3d; transform: translateY(-2px); }
 `;

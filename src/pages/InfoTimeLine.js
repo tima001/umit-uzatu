@@ -1,105 +1,100 @@
 import React from "react";
 import styled from "@emotion/styled";
-import TimelineSvg from "../img/timeline.svg";
-import OrnamentSvg from "../img/ornament.svg";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { keyframes } from "@emotion/react";
+import OrnamentCircle from "../img/ornament-circle.webp";
 
-const InfoTimeLine = () => {
-  const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
+const spin = keyframes`from{transform:rotate(0)}to{transform:rotate(360deg)}`;
 
+const PROG = [
+  { t: "18:00", l: "қонақтардың жиналуы" },
+  { t: "18:30", l: "беташар" },
+  { t: "19:00", l: "тойдың басталуы" },
+  { t: "20:00", l: "ән-би, ойын-сауық" },
+  { t: "21:00", l: "ата-анадан бата" },
+  { t: "22:00", l: "тойдың аяқталуы" },
+];
+
+export default function InfoTimeLine() {
   return (
-    <TimelineWrapper ref={ref} visible={visible}>
-      {/* Top-right ornament */}
-      <OrnamentTopRight src={OrnamentSvg} aria-hidden="true" />
-      {/* Top-left ornament */}
-      <OrnamentTopLeft src={OrnamentSvg} aria-hidden="true" />
+    <Wrap>
+      <BgOrn src={OrnamentCircle} alt="" />
 
-      <TitleText>Той бағдарламасы</TitleText>
-      <SubText>Сізді күтетін оқиғалар</SubText>
-      <TimelineImg src={TimelineSvg} alt="Той бағдарламасы" />
-    </TimelineWrapper>
+      <Title>Той бағдарламасы:</Title>
+
+      <ProgList>
+        {PROG.map((item, i) => (
+          <ProgItem key={i}>
+            <ProgTime>{item.t}</ProgTime>
+            <ProgLabel>{item.l}</ProgLabel>
+          </ProgItem>
+        ))}
+      </ProgList>
+    </Wrap>
   );
-};
+}
 
-export default InfoTimeLine;
-
-const TimelineWrapper = styled.div`
-  position: relative;
+const Wrap = styled.div`
+  background: #fffbec;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 0 16px;
+  gap: 18px;
+  padding: 48px 24px;
+  position: relative;
   overflow: hidden;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transform: ${({ visible }) => (visible ? "translateY(0)" : "translateY(40px)")};
-  transition: opacity 1s ease, transform 1s ease;
 `;
 
-const OrnamentBase = styled.img`
+const BgOrn = styled.img`
   position: absolute;
-  width: 180px;
-  height: 180px;
-  opacity: 0.08;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  opacity: 0.35;
   pointer-events: none;
-  user-select: none;
-  animation: spinOrnament 20s linear infinite;
-
-  @keyframes spinOrnament {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  @media (max-width: 375px) {
-    width: 140px;
-    height: 140px;
-  }
+  animation: ${spin} 60s linear infinite;
 `;
 
-const OrnamentTopRight = styled(OrnamentBase)`
-  top: 40px;
-  right: -100px;
-`;
-
-const OrnamentTopLeft = styled(OrnamentBase)`
-  bottom: 130px;
-  left: -110px;
-`;
-
-const TitleText = styled.div`
-  font-family: "GreatFont";
-  font-size: 48px;
-  color: #3d1a18;
-  letter-spacing: 2px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-
-  @media (max-width: 320px) {
-    font-size: 32px;
-  }
-`;
-
-const SubText = styled.div`
-  font-family: "BKANTKZ", Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 200;
-  color: #888;
+const Title = styled.div`
+  font-family: "accent", cursive;
+  font-size: 34px;
+  color: #84744b;
   text-align: center;
   position: relative;
   z-index: 1;
 `;
 
-const TimelineImg = styled.img`
+const ProgList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
-  max-width: 380px;
-  display: block;
+  max-width: 300px;
   position: relative;
   z-index: 1;
-  animation: fadeInScale 1.2s ease both;
+`;
 
-  @keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
+const ProgItem = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(132, 116, 75, 0.15);
+  &:last-child { border-bottom: none; }
+`;
+
+const ProgTime = styled.div`
+  font-family: "body", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #84744b;
+  min-width: 48px;
+`;
+
+const ProgLabel = styled.div`
+  font-family: "body", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6b5d44;
+  line-height: 1.3;
 `;

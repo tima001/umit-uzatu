@@ -1,180 +1,103 @@
-import "./App.css";
-import PhotoWithHeader from "./pages/PhotoWithHeader";
-import InformationText from "./pages/InformationText";
-import RoadMapContent from "./pages/RoadMapContent";
-import InvitationText from "./pages/InvitationText";
-import InfoTimeLine from "./pages/InfoTimeLine";
-import FormContent from "./pages/FormContent";
-import Calendar from "./pages/Calendar";
+import React from "react";
 import styled from "@emotion/styled";
-import line from "./img/LineBg.png";
-import YurtaImg from "../src/img/yurta.jpg"
-import LineSvg from "../src/img/line.svg"
-import OrnamentSvg from "../src/img/ornament.svg"
 
-function Components() {
+import PhotoWithHeader from "./pages/PhotoWithHeader";
+import OvalCard from "./pages/OvalCard";
+import InvitationText from "./pages/InvitationText";
+import Calendar from "./pages/Calendar";
+import CountdownBand from "./pages/CountdownBand";
+import InformationText from "./pages/InformationText";
+import RestaurantPhotos from "./pages/RestaurantPhotos";
+import FormContent from "./pages/FormContent";
+import Wishes from "./pages/Wishes";
+import InfoTimeLine from "./pages/InfoTimeLine";
+import Reveal from "./pages/Reveal";
+import ClosingPhoto from "./img/closing-photo.webp";
+import HeartIcon from "./img/heart-icon.webp";
+
+export default function Components({ isMuted, onToggle }) {
   return (
-    <ContentWrapper>
-      <PhotoWithHeader />
+    <Page>
+      <PhotoWithHeader isMuted={isMuted} onToggle={onToggle} />
+
+      <Reveal>
+        <OvalCard>
+          <InvitationText />
+        </OvalCard>
+      </Reveal>
+
+      <Reveal><Calendar /></Reveal>
+
+      <Reveal><CountdownBand /></Reveal>
+
+      <Reveal>
+        <OvalCard flip>
+          <InformationText />
+        </OvalCard>
+      </Reveal>
+
+      <Reveal><RestaurantPhotos /></Reveal>
+
+      <Reveal><FormContent /></Reveal>
+
+      <Divider><img src={HeartIcon} alt="" style={{ width: 36, opacity: 0.7 }} /></Divider>
+
+      <Reveal><Wishes /></Reveal>
 
 
-      <Section delay="0s">
-        <InvitationText />
-      </Section>
+      <Reveal>
+        <Closing>
+          <CloseTitle>Той иелері:</CloseTitle>
+          <CloseSub>Бахытжан мен Жанар</CloseSub>
 
-      <img src={YurtaImg}  style={{ 
-    height: '300px', 
-    width: '100%', 
-    objectFit: 'cover'
-  }}/>
+        </Closing>
+      </Reveal>
+        <Photo src={ClosingPhoto} alt="" />
 
-
-      <Section delay="0s">
-        <Calendar />
-      </Section>
-
-
-      <Section delay="0.1s">
-        <InformationText />
-      </Section>
-
-
-      <Section delay="0s">
-        <RoadMapContent />
-      </Section>
-<LineBgWrapper>
-        <MarqueeTrack>
-          <MarqueeImg src={LineSvg} aria-hidden="true" />
-          <MarqueeImg src={LineSvg} aria-hidden="true" />
-          <MarqueeImg src={LineSvg} aria-hidden="true" />
-        </MarqueeTrack>
-      </LineBgWrapper>
-      <Section delay="0s">
-        <InfoTimeLine />
-      </Section>
-
-      <Section delay="0s">
-        <FormContent />
-      </Section>
-<Section delay="0s">
-      <BottomOrnamentRow>
-        <TitleText>Қуанышымызға <br/> ортақ болыңыздар!</TitleText>
-        <BottomOrnament src={OrnamentSvg} aria-hidden="true" />
-      </BottomOrnamentRow>
-      </Section>
-      
-    </ContentWrapper>
+    </Page>
   );
 }
 
-export default Components;
-
-const ContentWrapper = styled.div`
-  position: relative;
-  margin-top: -90px;        /* ← вместо top: -90px */
+const Page = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  gap: 48px;
-  padding-bottom: 0;
-  background-color: #faf8f5;
-  background-repeat: repeat;
-  background-size: cover;
-
-  @media (max-width: 425px) {
-    background-size: auto;
-  }
+  background: #fffbec;
 `;
 
-const BackgroundLine = styled.img`
-  width: 100%;
-`;
-
-
-const Section = styled.div`
-  animation: sectionFadeIn 0.8s ease ${({ delay }) => delay || "0s"} both;
-
-  @keyframes sectionFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-`;
-
-
-const LineBgWrapper = styled.div`
-  width: 140%;
-  overflow: hidden;
-  opacity: 0.35;
-  padding: 6px 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-`;
-
-const MarqueeTrack = styled.div`
-  display: flex;
-  width: max-content;
-  animation: marquee 18s linear infinite;
-
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); }
-  }
-`;
-
-const MarqueeImg = styled.img`
-  height: 28px;
-  width: auto;
-  flex-shrink: 0;
-  display: block;
-`;
-
-const BottomOrnament = styled.img`
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  bottom: -120px;   /* половина уходит вниз, но обрезается overflow:hidden */
-  opacity: 0.18;
-  animation: spinOrnamentBottom 22s linear infinite;
-
-  @keyframes spinOrnamentBottom {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-`;
- 
-const BottomOrnamentRow = styled.div`
-  position: relative;
+const Divider = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 40px 0 0;
-  overflow: hidden;
-  min-height: 180px;
+  padding: 8px 0 8px;
+  background: #fffbec;
 `;
 
-const TitleText = styled.div`
-  font-family: "GreatFont";
-  font-size: 54px;
-  color: #000000;
-  letter-spacing: 2px;
+const Closing = styled.div`
+  background: #fffbec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 20px 60px;
   text-align: center;
-  position: relative;
-  z-index: 1;
-line-height: 90%;
-  @media (max-width: 320px) {
-    font-size: 32px;
-  }
 `;
- 
+
+const CloseTitle = styled.div`
+  font-family: "bika", cursive;
+  font-size: 54px;
+  color: #84744b;
+`;
+
+const CloseSub = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: #a1916f;
+`;
+
+
+const Photo = styled.img`
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+`;

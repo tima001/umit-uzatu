@@ -1,118 +1,232 @@
 import React from "react";
 import styled from "@emotion/styled";
-import CalendarSvg from "../img/calendar.svg";
-import CircleSvg from "../img/circle.svg";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import FloralLarge from "../img/floral-large.webp";
 
-const Calendar = () => {
-  const [ref, visible] = useScrollAnimation({ threshold: 0.15 });
-  const [circleRef, circleVisible] = useScrollAnimation({ threshold: 0.2 });
+const DAYS = ["ДС", "СС", "СР", "БС", "ЖМ", "СБ", "ЖС"];
+const TOTAL_DAYS = 31;
+const FIRST_DAY = 5; // Aug 1 2026 = Saturday (0=Mon)
+const WEDDING_DAY = 19;
+
+function HeartIcon() {
+  return (
+    <HeartSvg
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "block", overflow: "visible", pointerEvents: "none" }}
+    >
+      <path
+        pathLength="1"
+        d="M 50,90 C 49,89 6,65 6,34 C 6,16 21,6 35,10 C 43,12 48,20 50,30 C 52,20 57,12 65,10 C 79,6 94,16 94,34 C 94,65 51,89 50,90 Z"
+        fill="none"
+        stroke="#fdbd63"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        pathLength="1"
+        d="M 49,86 C 48,85 9,62 10,36 C 11,20 24,11 36,15 C 42,17 46,22 49,28"
+        fill="none"
+        stroke="#fdbd63"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.7"
+      />
+      <path
+        pathLength="1"
+        d="M 51,29 C 54,21 59,13 68,12 C 78,11 88,18 90,30 C 91,36 90,42 87,48"
+        fill="none"
+        stroke="#fdbd63"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.65"
+      />
+      <path
+        pathLength="1"
+        d="M 50,83 C 47,81 20,62 17,42"
+        fill="none"
+        stroke="#fdbd63"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity="0.4"
+      />
+      <path
+        pathLength="1"
+        d="M 55,78 C 62,73 72,65 80,55"
+        fill="none"
+        stroke="#fdbd63"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        opacity="0.4"
+      />
+    </HeartSvg>
+  );
+}
+
+export default function Calendar() {
+  const cells = [];
+  for (let i = 0; i < FIRST_DAY; i++) cells.push(null);
+  for (let d = 1; d <= TOTAL_DAYS; d++) cells.push(d);
 
   return (
-    <CalendarWrapper ref={ref} visible={visible}>
-      <TitleText>Той салтанаты:</TitleText>
-      <DateLabel>21 тамыз 2026 ж.<br/> Басталу уақыты:<u>18:00</u> </DateLabel>
+    <Wrap>
+      <Floral src={FloralLarge} alt="" />
 
-      <CalendarContainer>
-        <CalendarImg src={CalendarSvg} alt="Той күнтізбесі" />
-        {/* Circle spins on top of "21" — August 2025: Thursday, row 4 */}
-        <CircleOverlay ref={circleRef} visible={circleVisible}>
-          <CircleImg src={CircleSvg} alt="" />
-        </CircleOverlay>
-      </CalendarContainer>
+      <DateLabel>Өткізілетін күні:</DateLabel>
 
-    </CalendarWrapper>
+      <MonthHeader>
+        <MonthName>ТАМЫЗ</MonthName>
+        <MonthYear>2026</MonthYear>
+      </MonthHeader>
+
+      <CalGrid>
+        {DAYS.map((d) => (
+          <DayHead key={d}>{d}</DayHead>
+        ))}
+        {cells.map((d, i) => (
+          <DayCell key={i} highlight={d === WEDDING_DAY ? 1 : 0} empty={!d ? 1 : 0}>
+            {d === WEDDING_DAY && <HeartBg><HeartIcon /></HeartBg>}
+            <DayNum>{d || ""}</DayNum>
+          </DayCell>
+        ))}
+      </CalGrid>
+    </Wrap>
   );
-};
+}
 
-export default Calendar;
-
-const CalendarWrapper = styled.div`
+const Wrap = styled.div`
+  position: relative;
+  background: #fffbec;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 36px;
-  padding: 0 16px;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transform: ${({ visible }) => (visible ? "translateY(0)" : "translateY(40px)")};
-  transition: opacity 1s ease, transform 1s ease;
-`;
+  gap: 18px;
+  width: 100%;
+  padding: 12px 24px 56px;
+  overflow: hidden;
 
-const TitleText = styled.div`
-  font-family: "GreatFont";
-  font-size: 52px;
-  color: #aa915d;;
-  letter-spacing: 2px;
-  text-align: center;
-  line-height: 40%;
-
-  @media (max-width: 320px) {
-    font-size: 32px;
+  @media (max-width: 325px) {
+    padding: 12px 8px 40px;
+    gap: 12px;
   }
 `;
 
-const CalendarContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 350px;
-`;
-
-const CalendarImg = styled.img`
-  width: 100%;
-  display: block;
-`;
-
-/* 
-  August 2025:
-  Mon Tue Wed Thu Fri Sat Sun
-  ...
-  18  19  20  [21] 22  23  24
-  
-  viewBox: 386.48 x 290.04
-  7 columns, "21" is Thursday = column index 3 (0-based)
-  Row 4 of dates (0-based index 3)
-
-  left = (3 + 0.5) / 7 = 50.0% of calendar width (center of Th column)
-  top = ~71% of calendar height (row 4 center)
-  
-  Circle width ≈ 1 column = 14% of calendar width
-  We subtract half the circle size to center it:
-  left = 50% - 7% = 43%
-  top = 71% - 7% = 64%
-*/
-const CircleOverlay = styled.div`
+const Floral = styled.img`
   position: absolute;
-  left: 57.5%;
-  top: 64%;
-  width: 14%;
-  aspect-ratio: 1;
-  z-index: 2;
+  top: 10%;
+  left: -60px;
+  width: 220px;
+  opacity: 0.55;
+  z-index: 0;
   pointer-events: none;
-
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transform: ${({ visible }) =>
-    visible ? "scale(1)" : "scale(0.3)"};
-  transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
-
-  img {
-    animation: spinSlow 10s linear infinite;
-  }
-
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-`;
-
-const CircleImg = styled.img`
-  width: 100%;
-  height: 100%;
 `;
 
 const DateLabel = styled.div`
-  font-family: "BKANTKZ", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  font-family: "bika", Arial, sans-serif;
+  font-size: clamp(30px, 9vw, 44px);
+  color: #6b5d44;
   text-align: center;
-  letter-spacing: 1px;
+`;
+
+const MonthHeader = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+`;
+
+const MonthName = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 5.5vw, 28px);
+  letter-spacing: 6px;
+  color: #84744b;
+`;
+
+const MonthYear = styled.div`
+  font-family: "KZPFMonumentaPro", Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(18px, 5.5vw, 28px);
+  letter-spacing: 4px;
+  color: #a1916f;
+`;
+
+const CalGrid = styled.div`
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  max-width: 380px;
+  gap: 6px;
+
+  @media (max-width: 325px) {
+    gap: 3px;
+  }
+`;
+
+const DayHead = styled.div`
+  font-family: "body", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #a1916f;
+  text-align: center;
+  padding: 4px 0;
+`;
+
+const DayCell = styled.div`
+  position: relative;
+  font-family: "body", Arial, sans-serif;
+  font-weight: ${(p) => (p.highlight ? 700 : 400)};
+  font-size: 16px;
+  color: ${(p) => (p.highlight ? "#84744b" : "#3a2a1a")};
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const HeartBg = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: heartbeat 1.1s ease-in-out infinite;
+  transform-origin: center;
+
+  @keyframes heartbeat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.18);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.12);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
+`;
+
+const HeartSvg = styled.svg`
+  width: 80%;
+  height: 80%;
+`;
+
+const DayNum = styled.span`
+  position: relative;
+  z-index: 1;
 `;
