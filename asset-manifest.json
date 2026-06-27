@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/umit-uzatu/static/css/main.75f89c77.css",
-    "main.js": "/umit-uzatu/static/js/main.1affd343.js",
+    "main.js": "/umit-uzatu/static/js/main.02d8a985.js",
     "static/js/787.4ff3cea1.chunk.js": "/umit-uzatu/static/js/787.4ff3cea1.chunk.js",
     "static/media/music.MP3": "/umit-uzatu/static/media/music.a88433796b1a6d7aa76d.MP3",
     "static/media/Bickham_Script_Pro_3_Regular.otf": "/umit-uzatu/static/media/Bickham_Script_Pro_3_Regular.c03ebdc5b3118db16d5d.otf",
@@ -34,11 +34,11 @@
     "static/media/heart-icon.webp": "/umit-uzatu/static/media/heart-icon.0e3e6c403335ad6201ee.webp",
     "index.html": "/umit-uzatu/index.html",
     "main.75f89c77.css.map": "/umit-uzatu/static/css/main.75f89c77.css.map",
-    "main.1affd343.js.map": "/umit-uzatu/static/js/main.1affd343.js.map",
+    "main.02d8a985.js.map": "/umit-uzatu/static/js/main.02d8a985.js.map",
     "787.4ff3cea1.chunk.js.map": "/umit-uzatu/static/js/787.4ff3cea1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.75f89c77.css",
-    "static/js/main.1affd343.js"
+    "static/js/main.02d8a985.js"
   ]
 }
