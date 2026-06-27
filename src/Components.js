@@ -10,7 +10,6 @@ import InformationText from "./pages/InformationText";
 import RestaurantPhotos from "./pages/RestaurantPhotos";
 import FormContent from "./pages/FormContent";
 import Wishes from "./pages/Wishes";
-import InfoTimeLine from "./pages/InfoTimeLine";
 import Reveal from "./pages/Reveal";
 import ClosingPhoto from "./img/closing-photo.webp";
 import HeartIcon from "./img/heart-icon.webp";

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
-import ArrowIcon from "../img/arrow.svg";
 import PhotoExterior from "../img/qobyz photo/SaveClip.App_661724172_1277062230439500_7119331622540179883_n.jpg";
 import PhotoInterior1 from "../img/qobyz photo/SaveClip.App_625351224_18036381701777571_8620385735909942911_n.jpg";
 import PhotoInterior2 from "../img/qobyz photo/SaveClip.App_625843776_18036381830777571_4535146886944735304_n.jpg";
@@ -35,20 +34,10 @@ export default function RestaurantPhotos() {
   );
 }
 
-const bounce = keyframes`
-  0%, 100% { transform: translateY(0); opacity: 0.55; }
-  50% { transform: translateY(14px); opacity: 1; }
-`;
-
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Arrow = styled.img`
-  width: 240px;
-  animation: ${bounce} 1.6s ease-in-out infinite;
 `;
 
 const scroll = keyframes`
