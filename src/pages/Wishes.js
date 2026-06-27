@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
-import audioBubizainap from "../img/бүбізәйнап поздравление аудио.MP3";
-import audioSandigul from "../img/сәндігүл апаң.MP3";
-import audioDuisekul from "../img/Дүйсекүл апасы.MP3";
+import audioBubizainap from "../img/bubizainap-apasy.MP3";
+import audioSandigul from "../img/sandigul-apan.MP3";
+import audioDuisekul from "../img/duisekul-apasy.MP3";
 
 const SEED = [
   { type: "text", name: "Әкесі", likes: 5, text: "Қызым, жаңа өміріңе ақ батамды беремін. Бақытты, қуанышты ғұмыр кешуіңді тілеймін!" },
