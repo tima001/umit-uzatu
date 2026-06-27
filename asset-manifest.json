@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/umit-uzatu/static/css/main.75f89c77.css",
-    "main.js": "/umit-uzatu/static/js/main.c358e0b2.js",
+    "main.js": "/umit-uzatu/static/js/main.1affd343.js",
     "static/js/787.4ff3cea1.chunk.js": "/umit-uzatu/static/js/787.4ff3cea1.chunk.js",
     "static/media/music.MP3": "/umit-uzatu/static/media/music.a88433796b1a6d7aa76d.MP3",
     "static/media/Bickham_Script_Pro_3_Regular.otf": "/umit-uzatu/static/media/Bickham_Script_Pro_3_Regular.c03ebdc5b3118db16d5d.otf",
@@ -12,12 +12,12 @@
     "static/media/KZGoodVibes.ttf": "/umit-uzatu/static/media/KZGoodVibes.5aa1e69b07699f91503d.ttf",
     "static/media/KZPFMonumentaPro-Regular.ttf": "/umit-uzatu/static/media/KZPFMonumentaPro-Regular.94b0b9dd5daafeadb925.ttf",
     "static/media/SaveClip.App_625988988___n.jpg": "/umit-uzatu/static/media/SaveClip.App_625988988_18036346982777571_1276677898327981394_n.833b521492f14a809321.jpg",
-    "static/media/бүбізәйнап поздравление аудио.MP3": "/umit-uzatu/static/media/бүбізәйнап поздравление аудио.497bfff85102dab44d15.MP3",
+    "static/media/bubizainap-apasy.MP3": "/umit-uzatu/static/media/bubizainap-apasy.497bfff85102dab44d15.MP3",
     "static/media/SaveClip.App_625351224___n.jpg": "/umit-uzatu/static/media/SaveClip.App_625351224_18036381701777571_8620385735909942911_n.768185af20aa536d72c4.jpg",
     "static/media/рамка-кроп.png": "/umit-uzatu/static/media/рамка-кроп.32d14c3799a83f3a750a.png",
-    "static/media/сәндігүл апаң.MP3": "/umit-uzatu/static/media/сәндігүл апаң.7450b6147bacd0bc378c.MP3",
+    "static/media/sandigul-apan.MP3": "/umit-uzatu/static/media/sandigul-apan.7450b6147bacd0bc378c.MP3",
     "static/media/SaveClip.App_626263748___n.jpg": "/umit-uzatu/static/media/SaveClip.App_626263748_18036346853777571_8208607543179336022_n.55964344c06cc5052a23.jpg",
-    "static/media/Дүйсекүл апасы.MP3": "/umit-uzatu/static/media/Дүйсекүл апасы.b2d7f783a05239104e79.MP3",
+    "static/media/duisekul-apasy.MP3": "/umit-uzatu/static/media/duisekul-apasy.b2d7f783a05239104e79.MP3",
     "static/media/SaveClip.App_625843776___n.jpg": "/umit-uzatu/static/media/SaveClip.App_625843776_18036381830777571_4535146886944735304_n.71053fdbece318606466.jpg",
     "static/media/floral-a.webp": "/umit-uzatu/static/media/floral-a.5765ac2885b3a1c84a28.webp",
     "static/media/Miama_Nueva_kz.woff": "/umit-uzatu/static/media/Miama_Nueva_kz.bf7edec36b2714f7c0f8.woff",
@@ -34,11 +34,11 @@
     "static/media/heart-icon.webp": "/umit-uzatu/static/media/heart-icon.0e3e6c403335ad6201ee.webp",
     "index.html": "/umit-uzatu/index.html",
     "main.75f89c77.css.map": "/umit-uzatu/static/css/main.75f89c77.css.map",
-    "main.c358e0b2.js.map": "/umit-uzatu/static/js/main.c358e0b2.js.map",
+    "main.1affd343.js.map": "/umit-uzatu/static/js/main.1affd343.js.map",
     "787.4ff3cea1.chunk.js.map": "/umit-uzatu/static/js/787.4ff3cea1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.75f89c77.css",
-    "static/js/main.c358e0b2.js"
+    "static/js/main.1affd343.js"
   ]
 }
